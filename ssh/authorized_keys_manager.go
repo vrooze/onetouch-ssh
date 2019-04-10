@@ -28,7 +28,8 @@ func (manager *AuthorizedKeysManager) WriteToDefaultLocation() error {
 	// FIXME: create the .ssh dir if it doesn't exist.
 
 	filename := home + "/.ssh/authorized_keys"
-	file, err := os.Create(filename)
+	//file, err := os.Create(filename)
+	file, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644) 
 	if err != nil {
 		return err
 	}
